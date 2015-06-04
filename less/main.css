@@ -40,3 +40,10 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+.box5 {
+  width: 150px;
+  height: 150px;
+  background: red;
+  margin: 10px;
+  background: gray;
+}
