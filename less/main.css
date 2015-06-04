@@ -1,0 +1,42 @@
+.wrap {
+  width: 150px;
+  height: 120px;
+  background: #0000ff;
+}
+.wrap.box2 {
+  height: 10px;
+}
+.wrap .box {
+  width: 150px;
+  height: 120px;
+  background: #0000ff;
+}
+.wrap .box.box2 {
+  height: 10px;
+}
+.wrap a {
+  color: white;
+}
+.wrap a:hover {
+  color: #0000ff;
+}
+.box3 {
+  width: 150px;
+  height: 150px;
+  background: red;
+  margin: 10px;
+  -webkit-transform: rotate(80deg);
+  -o-transform: rotate(80deg);
+  -ms-transform: rotate(80deg);
+  transform: rotate(80deg);
+}
+.box4 {
+  width: 150px;
+  height: 150px;
+  background: red;
+  margin: 10px;
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

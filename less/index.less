@@ -1,0 +1,26 @@
+
+.wrap{
+	.box();
+	.box{
+		width: @width150;
+		height: 120px;
+		background: @blue;
+		&.box2{
+			height: 10px;
+		}
+	}
+	a{
+		color: white;
+		&:hover{
+			color: @blue;
+		};
+	}
+}
+.box3{
+	.box();
+	.rotate(80deg);
+}
+.box4{
+	.box();
+	.rotate(45deg);
+}
