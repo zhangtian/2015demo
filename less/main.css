@@ -29,6 +29,7 @@
   -o-transform: rotate(80deg);
   -ms-transform: rotate(80deg);
   transform: rotate(80deg);
+  background: #0000ff;
 }
 .box4 {
   width: 150px;
