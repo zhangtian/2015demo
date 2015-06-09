@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;}
+        div{width:50px;height:50px;background-color: red;position: absolute;left: 0;top:0;}
+    </style>
+    <script>
+        window.onload = function(){
+            var aDiv = document.getElementsByTagName('div');
+            var len = aDiv.length;
+            document.onmousemove = function(ev){
+                var e = ev || event;
+//					aDiv[0].style.left = (e.clientX - 25)+"px";
+//					aDiv[0].style.top = (e.clientY - 25)+"px";
+//                for( var i = aDiv.length - 1; i >0; i-- ){
+//						aDiv[i].style.left = aDiv[i - 1].style.left;
+//						aDiv[i].style.top = aDiv[i - 1].style.top;
+//					}
+
+
+                for(var i = 0; i < len; i++){ 
+                    if(i===0){
+                        aDiv[i].style.left = (e.clientX - 25) +'px';
+                        aDiv[i].style.top = (e.clientY - 25) +'px';
+                    }else{ 
+                        (function(i){
+                            setTimeout(function(){
+                                aDiv[i].style.left = aDiv[i-1].style.left;
+                                aDiv[i].style.top = aDiv[i-1].style.top;
+                            },20*i);
+                        })(i)
+                    }
+                         
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script src="../comm/comm.js"></script>
+</body>
+</html>

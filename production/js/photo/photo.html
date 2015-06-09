@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        body{background-color: #000;}
+        #div1{width:740px;height:430px;margin:30px auto;background-color: #fff;padding:120px;}
+        #div2{width:738px;height:390px;border:1px dashed #000;margin-top: 10px;position: relative;}
+        img{width:170px;height:110px;vertical-align: top;position: absolute;}
+        #div2 .border{border:2px dashed #333;}
+    </style>
+    <script src="../comm/comm.js"></script>
+    <script>
+        window.onload = function(){
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = oDiv1.getElementsByTagName('div')[0];
+            var oBtn = oDiv1.getElementsByTagName('input')[0];
+            var aImg = oDiv2.getElementsByTagName('img');
+            var iSpeed = 10;
+           
+            //img的位置
+            for(var i = 0; i < aImg.length; i++){
+                aImg[i].style.left = i%4*176 + 20 + 'px';
+                aImg[i].style.top = Math.floor(i/4)*120 + 20 + 'px';
+            }
+            
+            //点击随机
+            var arr1 = [];
+            for(var i = 0; i < aImg.length; i++){
+                arr1.push({left:aImg[i].style.left,top:aImg[i].style.top});
+            }
+            
+            oBtn.onclick = function(){
+                
+                arr1.sort(function(){
+                    return Math.random()-0.5;
+                });
+                
+                for(var k = 0; k < aImg.length; k++){
+                    aImg[k].style.left = arr1[k].left + 'px';
+                    aImg[k].style.top = arr1[k].top + 'px';
+                }
+            };
+            
+            //拖动和碰撞
+            oDiv2.onmousedown = function(ev){
+                
+                var e = ev || event;
+                var target = e.target || e.srcElement;
+                
+                var l = e.clientX - target.offsetLeft;
+                var t = e.clientY - target.offsetTop;
+                
+                var il = target.offsetLeft;
+                var it = target.offsetTop;
+
+                var minLine2 = null;//每次摁下的时候把上次记录的碰撞那个清空
+                document.onmousemove = function(ev){
+                     var arr = [];
+                     var minLine;
+                    var maxLine = 1000000000;
+                    var e = ev || event;
+                    //判断目标阶段
+                    if(target.tagName.toLowerCase() == 'img'){
+                        target.style.left = e.clientX - l + 'px';
+                        target.style.top = e.clientY - t + 'px';
+                        target.style.zIndex = '2';
+                        for(var i = 0; i < aImg.length; i++){
+                            aImg[i].className = '';
+                            if(target != aImg[i]){
+                                //判断是否碰撞
+                                if(collision(target,aImg[i])){
+                                    arr.push(aImg[i]);
+                                }
+                            }
+                        };
+                        if(arr.length <= 0){
+                            minLine2 = target;
+                            return;
+                        } 
+                        for(var j = 0; j < arr.length; j++){
+                            var targetL = target.offsetLeft + target.offsetWidth/2;
+                            var targetT = target.offsetTop + target.offsetHeight/2;
+                            var collisionL = arr[j].offsetLeft + arr[j].offsetWidth/2;
+                            var collisionT = arr[j].offsetTop + arr[j].offsetHeight/2;
+                            var minL = targetL - collisionL;
+                            var minT = targetT - collisionT;
+                            if((minL*minL + minT*minT) < maxLine){
+                                maxLine = minL*minL + minT*minT;
+                                minLine = arr[j];
+                            }
+                        }
+                       minLine.className = 'border';
+                       minLine2 = minLine;
+                    };
+                            
+                    target.setCapture && target.setCapture();
+                    return false;
+                }
+                document.onmouseup = function(){
+                    if(minLine2){   
+                        var iLeft = minLine2.offsetLeft;
+                        var iTop = minLine2.offsetTop;
+                        minLine2.className = ''; 
+                        startMove(target, 'left', iSpeed, iLeft, function(){
+                            startMove(target, 'top', iSpeed, iTop);
+                    });
+                    
+                        startMove(minLine2,'left',iSpeed,il,function(){
+                            startMove(minLine2,'top',iSpeed,it);
+                        });
+                    }
+                    target.style.zIndex = '0';
+                    
+                    document.onmousemove = document.onmouseup = null;
+                    target.releaseCapture && target.releaseCapture();
+                }
+                
+                return false;
+                
+            }
+            //碰撞检测
+            function collision(obj1,obj2){
+
+                var obj1L = obj1.offsetLeft;
+                var obj1LW = obj1L + obj1.offsetWidth;
+                var obj1T = obj1.offsetTop;
+                var obj1TH = obj1T + obj1.offsetHeight;
+
+                var obj2L = obj2.offsetLeft;
+                var obj2LW = obj2L + obj2.offsetWidth;
+                var obj2T = obj2.offsetTop;
+                var obj2TH = obj2T + obj2.offsetHeight;
+
+                if( obj1LW < obj2L || obj1L > obj2LW || obj1TH < obj2T || obj1T > obj2TH){
+                    return false;
+                }
+
+                return true;
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <input type="button" value="随机">
+        <div id="div2">
+            <img src="imgs/img/1.jpg" alt="">
+            <img src="imgs/img/2.jpg" alt="">
+            <img src="imgs/img/3.jpg" alt="">
+            <img src="imgs/img/4.jpg" alt="">
+            <img src="imgs/img/5.jpg" alt="">
+            <img src="imgs/img/6.jpg" alt="">
+            <img src="imgs/img/7.jpg" alt="">
+            <img src="imgs/img/8.jpg" alt="">
+            <img src="imgs/img/9.jpg" alt="">
+            <img src="imgs/img/10.jpg" alt="">
+            <img src="imgs/img/11.jpg" alt="">
+            <img src="imgs/img/12.jpg" alt="">
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        a{text-decoration: none;}
+        ul{list-style: none;}
+        #box{width:840px;height:800px;border:1px solid #999;margin-left: auto;margin-right: auto;margin-top: 30px;padding:20px 0;}
+        #left{float: left;width:99px;padding-left:20px;border-right:1px solid #333;height:100%;}
+        .leftList li{font:18px/26px '';height:26px;}
+        .leftList .leftColor{background-color: #4ca4db;}
+        .leftColor a{color: #fff;}
+        #right{float: left;width:680px;padding:20px 20px 0;}
+        .rightTit{margin-bottom: 30px;}
+        .rightList{padding:0 80px 0 40px;}
+        .rightList h3{margin-bottom: 10px;font:bold 14px/20px '';}
+        .rightList h3 span{margin-right: 30px;}
+        .rightList li{margin-bottom: 30px;}
+        .rightPage{height:20px;font:16px/20px '';}
+        .page{float: left;height:20px;}
+        .prev,.next{float: left;background-color: #9d9a9a;color:#fff;margin-right: 10px;padding:0 20px;}
+        .page a{height:20px;padding:0 20px;background-color: #9d9a9a;color:#fff;display: inline-block;margin-right: 10px;}
+        .page .pageColor{background-color: #575656;}
+    </style>
+    <script src="../comm/comm.js"></script>
+    <script>
+        window.onload = function(){
+            var oRight = $('#right');
+            var oRightL = $('.rightList',oRight)[0];
+            var oPageR = $('.rightPage',oRight)[0];
+            var oPage = $('.page',oPageR)[0];
+            var aA = $('a',oPage);//aA的值是动态获取的;
+            var oPrev = $('.prev',oPageR)[0];
+            var oNext = $('.next',oPageR)[0];
+            
+            var data = [{job:'职位需求：校园招聘1',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘2',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘3',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘4',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘5',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘6',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘7',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘8',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘9',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘10',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'},{job:'职位需求：校园招聘11',people:'需求人数：2名',time:'2014-02-21',demand:'岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识',details:'【查看详情】'}];
+            
+            var pageN = 5;
+            var len = data.length;
+            var num = Math.ceil(len/pageN);
+            var n = 0;
+            
+            //获取hash值
+            var hash = window.location.hash;
+            
+            var hashNum = 1;
+            if(!hash){//程序每次加载的时候 如果没有hash值
+                //hashNum默认是1
+                hashNum = 1;
+            }else{//如果有hash值
+                //hashNum等于hash值的=号后面的数字
+                hashNum = hash.split('=')[1];
+            }
+            n = hashNum-1;
+            
+            //根据hashNum的值 循环生成li
+            cteateL(n);
+            
+            //点击上一页
+            oPrev.onclick = function(){
+                n--;
+                if(n <= 0){
+                    n = 0;
+                };
+                for(var i = 0; i < aA.length; i++){
+                    aA[i].className = '';
+                }
+                aA[n].className = 'pageColor';
+                cteateL(n);
+            };
+            
+            //点击下一页
+            oNext.onclick = function(){
+                n++;
+                if(n >= num){
+                    n = num-1;
+                };
+                for(var i = 0; i < aA.length; i++){
+                    aA[i].className = '';
+                }
+                aA[n].className = 'pageColor';
+                cteateL(n);
+            };
+            
+            //循环生成a
+            for(var i = 0; i < num; i++){
+                var oA = document.createElement('a');
+                oA.innerHTML = i+1;
+                oPage.appendChild(oA);
+            };
+            
+            //给每个aA添加点击事件
+            for(var i = 0; i < aA.length; i++){
+                aA[i].index = i;
+                aA[i].onclick = function(){
+                    for(var j = 0; j < aA.length; j++){
+                        aA[j].className = '';
+                    };
+                    aA[this.index].className = 'pageColor';
+                    n = this.index;//记录一下当前点击的是哪个li
+                    cteateL(this.index);
+                };
+            }
+            
+            
+            //创建一个公共的函数
+            function cteateL(index){
+                //每次调用这个函数创建li的时候都先要清一下ul的inner;
+                oRightL.innerHTML = '';
+                //hash值就等于当前的下标加1
+                window.location.hash = 'page='+(index+1);
+                //点击页码的时候循环生成li
+                for(var i = index*pageN ; i < (index*pageN + pageN ); i++){
+                    if(data[i]){//如果最后一页没有满足相应的个数那么就会报错，因为循环data的第i个，但是如果没有第i个那么就会报错，现在判断一下data的第i个存不存在，如果存在再创建元素
+                        var oLi = document.createElement('li');
+                        oLi.innerHTML = '<h3><span>'+ (i+1) +'</span><span>'+ data[i].job +'</span><span>'+ data[i].people +'</span><span>'+ data[i].time +'</span></h3><p>'+ data[i].demand +'<a href="javascript:;">'+ data[i].details +'</a></p>';
+                        oRightL.appendChild(oLi);
+                    }
+                };
+            };
+            
+            //当地址栏的页码改变相对应的第hashNum-1的aA改变颜色
+            aA[n].className = 'pageColor';
+            
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div id="right">
+            <h3 class="rightTit">社会招聘</h3>
+            <ul class="rightList">
+<!--
+                <li>
+                    <h3><span>1</span><span>职位需求：社会招聘</span><span>需求人数：2名</span><span>2014-02-21</span></h3>
+                    <p>岗位要求：1)helpdesk支持；2)熟悉计算机软、硬件及网络维护；3)有相关工作经验，态度端正；4)有一定的服务意识<a href="javascript:;">【查看详情】</a></p>
+                </li>
+-->
+            </ul>
+            <div class="rightPage">
+                <p class="prev">prev</p>
+                <div class="page"></div>
+                <p class="next">next</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>  

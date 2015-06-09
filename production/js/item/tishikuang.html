@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        #prompt{padding:0 10px;background-color: #4f80b9;color: #fff;position: absolute;left:0;top:0;display: none;line-height: 30px;}
+        .box{width:500px;height:60px;border: 3px solid #000;margin:50px 0 50px;margin-left: auto;margin-right: auto;padding:20px;}
+        p{height: 30px;font:16px/30px '';}
+        span{color: red;position:}
+    </style>
+    <script>
+        function getStyle ( obj, attr ) {
+             return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr];
+        }
+        function getOffset( obj ){
+            var iLeft = 0,iTop=0
+            var objBorder = parseInt(getStyle(obj,"borderLeftWidth"));//NaN
+
+            //判断不是NaN，是NaN的话，赋值为0
+
+            objBorder = isNaN( objBorder ) ? 0 : objBorder
+
+            while( obj ){
+
+                var borderL = parseInt(getStyle(obj,"borderLeftWidth"));
+                //判断不是NaN，是NaN的话，赋值为0
+                    borderL = isNaN(borderL) ? 0 : borderL;
+
+                iLeft += obj.offsetLeft + borderL ;
+                iTop+= obj.offsetTop + borderL ;
+                obj = obj.offsetParent;
+
+            };
+            return {
+                W:iLeft - objBorder,	
+                H:iTop - objBorder
+            }	
+        };
+        window.onload = function(){
+            var aBox = $('.box');
+            var aSpan = $('span');
+            var oPrompt = $('#prompt');
+            var arr = ['妙味课堂是一家前段培训机构','学员爱好学习','欢迎您!']
+            var len = aBox.length;
+            for(var i = 0; i < len; i++){
+                (function(i){
+                    var aSpan = $('span',aBox[i]);
+                    for(var k = 0; k < aSpan.length; k++){
+                        
+                        (function(k){
+                            var T = getOffset(aSpan[k]).H;
+                            var L = getOffset(aSpan[k]).W;
+                            aSpan[k].onmouseover = function(){
+
+                                this.style.position = 'relative';
+
+                                oPrompt.style.display = 'block';
+                                oPrompt.style.top = T + this.offsetHeight+'px';
+                                oPrompt.style.left = L +this.offsetWidth+ 'px';
+                                
+                                oPrompt.innerHTML = arr[k];
+
+                            }
+                            aSpan[k].onmouseout = function(){
+                                oPrompt.style.display = 'none';
+                            };
+                        })(k);
+                    }
+                })(i)
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <p>每期都有新的学员来<span>妙味课堂</span>学习</p>
+        <p>每期都有新的学员来<span>妙味课堂</span>学习,<span>妙味课堂</span>欢迎您！</p>
+    </div>
+    <div class="box">
+        <p>每期都有新的学员来每期都有新的学员来<span>妙味课堂</span>学习</p>
+        <p>每期都有新的学员来<span>妙味课堂</span>学习,<span>妙味课堂</span>欢迎您！</p>
+    </div>
+    <div id="prompt">欢迎您!</div>
+    <script src="../comm/comm.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #div1{width:100px;height:100px;background-color: red;position: absolute;left: 10px;top:30px;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementsByTagName('input')[0];
+            var oDiv = document.getElementById('div1');
+            var arr = [];
+            oDiv.onmousedown = function(ev){
+                arr = [];//在当按下去的时候就把arr清空 就当拖了两次的时候 它只会执行最后一次拖动的动作
+                var e = ev || event;
+                var l = e.clientX - oDiv.offsetLeft;
+                var t = e.clientY - oDiv.offsetTop;
+                arr.push({left:oDiv.offsetLeft,top:oDiv.offsetTop});               
+                document.onmousemove = function(ev){
+                    var e = ev || event;
+                    var il = e.clientX - l;
+                    var it = e.clientY - t;
+                    oDiv.style.left = il + 'px';
+                    oDiv.style.top = it + 'px';
+                    
+                    arr.push({left:il,top:it});
+                };
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            };
+            var isOff = false;
+            oBtn.onclick = function(){
+                if(isOff) return;
+                
+                if(arr.length != 0) isOff = true;//在这里判断一下如果arr的length不等于0的时候说明是有内容的 这时把isOff置为true 如果arr里没有内容的话就不会走循环 就不会给isOff置为fasle
+                for(var i = arr.length-1; i >= 0; i--){
+                    (function(i){
+                        setTimeout(function(){
+                            oDiv.style.left = arr[i].left + 'px';
+                            oDiv.style.top = arr[i].top + 'px';
+                            if(i == 0){
+                                isOff = false;
+                                arr = [];
+                            };
+                        },(arr.length-i)*30)//每个间隔30毫秒运动
+                    })(i)
+                };
+            };
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="返回">
+    <div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/run.css" type="text/css">
+	<link rel="stylesheet" href="style/none.css" type="text/css">
+	<script>
+	function getByClass(className){
+		if(document.getElementsByClassName){
+			return document.getElementsByClassName(className);
+		}else{
+			var arr = [];
+			var arrEle = document.getElementsByTagName("*");
+			var reg = new RegExp("\\b"+className+"\\b");
+			for (var i = 0; i < arrEle.length; i++) {
+				if(reg.test(arrEle[i].className)){
+					arr.push(arrEle[i]);
+				}
+			};
+			return arr;
+		}
+	}
+	window.onload = function(){
+		var oDian = getByClass("dian")[0];
+		var aDianHref = oDian.getElementsByTagName("a");
+		var oUl = getByClass("images")[0];
+
+		for (var i = 0; i < aDianHref.length; i++) {
+			aDianHref[i].index = i; 
+			aDianHref[i].onmouseover = function(){
+				oUl.style.left = -oUl.children[0].offsetWidth*this.index+'px';
+			}
+		};
+	}
+	</script>
+</head>
+<body>
+	<div class="nav_box">
+		<div class="nav comWidth">
+			<div class="logo_bg"><img src="images/logo.png" alt=""></div>
+			<ul class="nav_list">
+				<li><a href="#">首页</a></li>
+				<li><a href="#">结婚咨询</a></li>
+				<li><a href="#">新娘日记</a></li>
+				<li><a href="#">新娘评价</a></li>
+				<li><a href="#">活动体验会</a></li>
+			</ul>
+			<div class="list_right">
+				<a href="#" class="sina"></a>
+				<a href="#" class="wx"></a>
+				<a href="#" class="btn"></a>
+				<a href="#" class="zc"></a>
+				<a href="#" class="gw"></a>
+			</div>
+		</div>
+	</div>
+	<div class="js comWidth">
+		<ul class="images">
+			<li><a href="#"><img src="images/js.jpg" title="111"></a></li>
+			<li><a href="#"><img src="images/js.jpg" title="222"></a></li>
+			<li><a href="#"><img src="images/js.jpg" title="333"></a></li>
+			<li><a href="#"><img src="images/js.jpg" title="444"></a></li>
+			<li><a href="#"><img src="images/js.jpg" title="555"></a></li>
+			<li><a href="#"><img src="images/js.jpg" title="666"></a></li>
+		</ul>
+		<div class="dian">
+			<a href="#" class="active"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+			<a href="#"></a>
+		</div>
+	</div>
+	<div class="zt comWidth">
+		<p class="text"><span>活动.主题</span></p>
+		<div class="item_box">
+			<div class="list_item clearfix">
+				<div class="item fl">
+					<div class="images_item"><img src="images/item.jpg" alt=""></div>
+					<h3 class="item_tit"><a href="#">格调生活馆</a><span class="right_item"><em>N.1</em><br>2014/08</span></h3>
+				</div>
+				<div class="item fl">
+					<div class="images_item"><img src="images/item.jpg" alt=""></div>
+					<h3 class="item_tit"><a href="#">格调生活馆</a><span class="right_item"><em>N.1</em><br>2014/08</span></h3>
+				</div>
+				<div class="item fl">
+					<div class="images_item"><img src="images/item.jpg" alt=""></div>
+					<h3 class="item_tit"><a href="#">格调生活馆</a><span class="right_item"><em>N.1</em><br>2014/08</span></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cont_next_box comWidth">
+		<div class="cont_next">
+			<div class="cont_top">
+				<h3 class="cont_tit"><span>大家</span>都在看</h3>
+				<ul class="cont_list">
+					<li><a href="#">爱在杭州</a></li>
+					<li><a href="#">四级花海</a></li>
+					<li><a href="#">西湖之韵</a></li>
+					<li><a href="#">纯爱系列</a></li>
+					<li><a href="#">浪漫温馨</a></li>
+					<li><a href="#">爱在杭州</a></li>
+					<li><a href="#">爱在杭州</a></li>
+					<li><a href="#">四级花海</a></li>
+				</ul>
+			</div>
+			<div class="cont_content clearfix">
+				<div class="content_item fl">
+					<div class="item_top1">
+						<h3 class="top_tit"><a href="#">精彩专题</a></h3>
+						<div class="top_img"><img src="images/top_img.jpg" alt=""></div>
+					</div>
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/top_img1.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><a href="#" class="bg1">10</a><a href="#" class="bg2">20</a><a href="#" class="bg3">15</a></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content_item fl">
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/meinv3.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><span class="bg1">10</span><span class="bg2">20</span><span class="bg3">15</span></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/meinv4.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><span class="bg1">10</span><span class="bg2">20</span><span class="bg3">15</span></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content_item fl">
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/meinv.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><span class="bg1">10</span><span class="bg2">20</span><span class="bg3">15</span></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/top_img1.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><span class="bg1">10</span><span class="bg2">20</span><span class="bg3">15</span></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content_item fl">
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/meinv2.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><span class="bg1">10</span><span class="bg2">20</span><span class="bg3">15</span></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item_top1">
+						<div class="top_img2">
+							<a href="#" class="top_img2_1"><img src="images/meinv4.jpg" alt=""></a>
+							<div class="tbg"></div>
+							<div class="tbg_text">
+								<a href="#">摄像：Vivien</a><a href="#">化妆：Sean</a><a href="#">取景：公园</a><a href="#">风格：浪漫</a>
+							</div>
+						</div>
+						<div class="top_cont1">
+							<div class="top_cont_tit">
+								<h3><a href="#">超唯美搞怪婚纱（楼先生/颜女士）</a></h3>
+								<p><span class="bg1">10</span><span class="bg2">20</span><span class="bg3">15</span></p>
+								<i class="i1"></i><i class="i2"></i>
+							</div>
+							<div class="top_cont_last">
+								<div class="top_last_img"><a href="#"><img src="images/zhuzhu.png" alt=""></a></div>
+								<div class="top_last_right">
+									<h3><a href="#">Amy</a></h3>
+									<p>这个婚纱照拍的真是不错啦！锐摄影工
+	作室也是我们从导航上看到的。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="last_last"><a href="#">浏 览 更 多</a></p>
+	</div>
+	<div class="last_text_box">
+		
+	</div>
+
+</body>
+</html> 

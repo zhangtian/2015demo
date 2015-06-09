@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding:0;}
+        #div1{width:300px;height:300px;position: absolute;left: 0px;top:0px;border:1px solid #000;}
+        #img1{width:300px;height:300px;vertical-align: top;border:none;}
+        #div2{width:100px;height:100px;position: absolute;left: 0;top:0;background-color: #fff;opacity: 0.6;}
+        #div3{width:300px;height:300px;border:1px solid #000;left: 320px;top:10px;position: absolute;overflow: hidden;}
+        #img2{width:900px;height:900px;vertical-align: top;border: none;position: absolute;left: 0;top: 0;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oImg1 = document.getElementById('img1');
+            var oImg2 = document.getElementById('img2');
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            var oDiv3 = document.getElementById('div3');
+            
+            //保存一下oDiv2的宽高
+            var oDiv2W = (oDiv3.offsetWidth/oImg2.offsetWidth)*oDiv1.clientWidth;
+            var oDiv2H = (oDiv3.clientHeight/oImg2.offsetHeight)*oDiv1.clientHeight;
+            
+            //保存完了以后隐藏
+            oDiv2.style.display = 'none';
+            oDiv3.style.display = 'none';
+            
+            oDiv1.onmousemove = function(ev){
+                
+                //鼠标移动到oDiv1上面算出oDiv2的宽高
+                oDiv2.style.width = oDiv2W + 'px';
+                oDiv2.style.height = oDiv2H + 'px';
+                
+                //鼠标移动到oDiv1上面让div显示
+                oDiv2.style.display = 'block';
+                oDiv3.style.display = 'block';
+                
+                var e = ev || event;
+                
+                //记录鼠标在oDiv1的位置
+                var l = e.clientX - oDiv2.offsetWidth/2;
+                var t = e.clientY - oDiv2.offsetHeight/2;
+                
+                //记录oDiv2可移动的最大值
+                var it = oDiv1.clientHeight - oDiv2.offsetHeight;
+                var il = oDiv1.clientWidth - oDiv2.offsetWidth;
+                
+                if(l > il) l = il;
+                if(l < 0) l = 0;
+                if(t > it) t = it;
+                if(t < 0) t = 0;
+                
+                oDiv2.style.left = l + 'px';
+                oDiv2.style.top =  t + 'px';
+                
+                //oImg2的left等于oDiv2的left除以 oDiv1的宽度减去oDiv2的宽度 乘以 oImg2的宽度减去oDiv3的宽度  top值同理
+                oImg2.style.left = - oDiv2.offsetLeft/(oDiv1.clientWidth-oDiv2.offsetWidth)*(oImg2.offsetWidth-oDiv3.offsetWidth)+ 'px';
+                oImg2.style.top = - oDiv2.offsetTop/(oDiv1.clientHeight-oDiv2.offsetHeight)*(oImg2.offsetHeight-oDiv3.offsetHeight) + 'px';
+                
+                return false;
+                
+            };
+            document.onmouseout = function(){
+                oDiv2.style.display = 'none';
+                oDiv3.style.display = 'none';
+                
+            }
+            
+        };
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <img id="img1" src="imgs/03.jpg" alt="">
+        <div id="div2"></div>
+        <div id="div3"><img id="img2" src="imgs/03.jpg" alt=""></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        #main{width:600px;height:2000px;border: 1px dashed #000;margin:0 auto;}
+        #btn{width:50px;height:30px;font: 18px/30px '';}
+        #mack{width:100%;height:100%;background-color: #000;opacity: 0.5;position: fixed;left: 0;top: 0;display: none;_position: absolute;}
+        #draloge{width:300px;height:200px;border: 5px solid red;position: fixed;right: 0;bottom:0;margin:-105px 0 0 -155px;background-color: #fff;display: none;_position: absolute;_margin-top: 0;_display:block;}
+    </style>
+    <script>
+        //获取可视区的宽高
+        function view(){
+            return {
+                H: window.innerHeight || document.documentElement.clientHeight,
+                W: window.innerWidth || document.documentElement.clientWidth
+            }
+        }
+        
+        //获取文档的高度
+        function scrollH(){
+            return document.body.scrollHeight;
+        }
+        
+        //内容的高度
+        function offsetH(){
+            return document.body.offsetHeight;
+        
+        }
+        
+        //滚动条滚动的距离
+        function scrollT(){
+            return window.pageYOffset || document.documentElement.scrollTop;
+        }
+        
+        window.onload = function(){
+            var oMain = document.getElementById('main');
+            var oMack = document.getElementById('mack');
+            var oDraloge = document.getElementById('draloge');
+            var oBtn = document.getElementById('btn');
+            var str = window.navigator.userAgent;
+            
+            //判断是不是ie6 不等于-1就说明是ie6
+            if(str.indexOf('MSIE 6') != -1){
+                oMack.style.height = Math.max(view().H,scrollH(),offsetH());
+                
+                var oDralogeH = oDraloge.offsetHeight;//这里用变量存一下 要不就会有bug 当我不点击登录的时候 先把滚动条往下拉 然后再点击登录 这样滚动滚动条的时候就获取不到oDraloge.offsetHeight的值 因为是隐藏的 存一下变量就把值保存了
+                oDraloge.style.top = (view().H - oDralogeH)/2 + scrollT() + 'px';
+                
+                //在css里面先把ie6里面的display设置为block 这样上面获取的时候就不为0 在下面再设置为display = none; 这样既不影响页面效果也能得到想要的值
+                oDraloge.style.display = 'none';
+                
+                window.onscroll = window.onresize = function(){
+                    oDraloge.style.top = (view().H - oDralogeH)/2 + scrollT() + 'px';
+                }
+                
+                
+            }
+            
+            oBtn.onclick = function(){
+                oMack.style.display = oDraloge.style.display = 'block';
+            };
+            oMack.ondblclick = function(){
+                oMack.style.display = oDraloge.style.display = 'none';
+            };
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="main">
+        <input type="button" value="登录" id='btn'>
+    </div>
+    <div id="mack"></div>
+    <div id="draloge">
+        登陆框
+    </div>
+</body>
+</html>

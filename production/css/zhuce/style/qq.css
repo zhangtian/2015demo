@@ -1,0 +1,176 @@
+@charset"utf-8";
+.box{width:395px; margin:30px auto;}
+.list{font:14px/35px "";}
+.list li{margin-bottom: 15px;}
+.left_name{width:80px; text-align: right; float: left;margin-right: 10px;}
+.nc{width:280px;height: 35px; padding:0 10px; background: url(../images/input.png) left top no-repeat; float: left;}
+.nc input{width:100%;height:35px;line-height: 35px\9;}
+.sex{height:17px;line-height: 17px; overflow: hidden;}
+.sex span{width:16px; height:17px; display:inline-block;background: url(../images/nv.png) left top no-repeat; padding-left: 20px;}
+.sex .active{background-image: url(../images/nan.png);}
+.list .sex_bt{margin-bottom: 23px;}
+.item_box{}
+.list .sr{height:23px;line-height: 23px;}
+.item{float: left; position: relative;width:60px;height:23px;margin-right: 4px;}
+.item_title{width:55px;height:23px;font:12px/23px ""; color: #4191c3; padding-left: 5px; background:url(../images/gongli.png) left top no-repeat;}
+i{border-width:4px; border-color:#4191c3 transparent transparent;border-style: solid dashed dashed; position: absolute;right: 7px; top:50%; margin-top: -2px;}
+.item:hover i{ border-color:transparent transparent #4191c3;border-style: dashed dashed solid; position: absolute;right: 7px; top:50%; margin-top: -6px;}
+.item:hover .item_list{display: block; z-index: 3;}
+.item_list{width:58px;height:150px;overflow: auto; border:#a7b6c4 1px solid;background-color: #fff;position: absolute;top:22px; left: 0;display: none;}
+.item_list li{margin-bottom: 0;}
+.item_list a{padding:0 5px;font-size:12px;line-height: 19px;display:block;height:19px;color: #4191c3; }
+.item_list a:hover{ background-color:#4191c3;color: #fff;}
+.item_width{width:97px;}
+.item_width .item_title{width:92px; background-image:url(../images/guo.png);}
+.item_width .item_list{width:95px;}
+
+.list .kt{height:16px;line-height: 16px;overflow: hidden;margin-bottom: 34px;}
+.kt .kt_qj{width:200px;height:16px; line-height: 16px; padding-left: 21px; background:url(../images/budiu.png) left top no-repeat;}
+.kt i{right:130px;margin-top: -4px;}
+.kt .active{background-image: url(../images/dui.png);}
+.list .kk{margin-bottom: 20px;position:relative;}
+.last{width:182px;height:52px; background: url(../images/button.png) left top no-repeat;}
+.list .last_box{height:52px;line-height: 52px;}
+.last button{width:182px;height:52px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

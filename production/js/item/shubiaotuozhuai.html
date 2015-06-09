@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;}
+        #div1{width:300px;height:300px;border: 1px solid #000;margin:30px auto;position: relative;}
+        #div2{width:100px;height:100px;background-color: red;position: absolute;left: 0;top:0;}
+    </style>
+    <script>
+        
+        window.onload = function(){
+            
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            
+            document.onmousedown = function(ev){
+                
+                var e = ev || event;
+                var l = e.clientX - oDiv1.offsetLeft - oDiv2.offsetLeft;
+                var t = e.clientY - oDiv1.offsetTop - oDiv2.offsetTop;
+                
+                document.onmousemove = function(ev){
+                    var e = ev || event;
+                    var il = e.clientX - l - oDiv1.offsetLeft;
+                    var it = e.clientY - t - oDiv1.offsetTop;
+                    if(il<0) il = 0;
+                    if(it<0) it = 0;
+                    if(il > (oDiv1.offsetWidth-oDiv2.offsetWidth-2)) il = oDiv1.offsetWidth-oDiv2.offsetWidth-2;
+                    if(it > (oDiv1.offsetHeight-oDiv2.offsetHeight-2)) it =oDiv1.offsetHeight-oDiv2.offsetHeight-2; 
+                    oDiv2.style.left = il + 'px';
+                    oDiv2.style.top = it + 'px'; 
+                };
+                
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+                
+                
+            };
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <script src="../comm/comm.js"></script>
+</body>
+</html>

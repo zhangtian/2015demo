@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        ul{list-style: none;}
+        #div1{width:300px;position: relative;font:16px/30px '';margin: 30px auto;text-indent: 5px;}
+        #top{width: 100%; height:30px;border: 1px solid red;}
+        #list{position: absolute;left: 0;top: 30px;width:100%;border: 1px solid red;display: none;}
+        .color{background-color: red; color: #fff;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oDiv1 = document.getElementById('div1');
+            var oTop = document.getElementById('top');
+            var oList = document.getElementById('list');
+            var aLi = oList.getElementsByTagName('li');
+            
+            var iNow = -1;
+            
+            function obj(ev,color){
+                var e = ev || event;
+                var target = e.target || e.srcElement;
+                
+                if(target.tagName.toLowerCase() == "li"){//tagName是标签名 默认是大写的 所以要转成小写
+                    target.className = color;
+                }
+            }
+            
+            for (var i = 0; i < aLi.length; i++){
+                aLi[i].index = i;
+            }
+            
+            document.onclick = function(){ 
+                oList.style.display = 'none';
+            }
+            
+            oTop.onclick = function(ev){
+                var e = ev || event;
+                oList.style.display = 'block';
+                e.cancelBubble = true;
+            }
+            
+            oList.onmouseover = function(ev){
+                obj(ev,'color');
+            }
+            oList.onmouseout = function(ev){
+                obj(ev,'');
+                setNowColor('color');//鼠标移出的时候判断一下当前这个是不是点击过的
+            }
+            function setNowColor(color){
+                if(iNow != -1){
+                    aLi[iNow].className = color;
+                }
+            }
+            oList.onclick = function(ev){
+                var e = ev || event;
+                var target = e.target || e.srcElement;
+                
+                if(target.tagName.toLowerCase() == "li"){//tagName是标签名 默认是大写的 所以要转成小写
+                    setNowColor('');//点击的时候把上次点击的清掉
+                    target.className = 'color';
+                    oTop.innerHTML = target.innerHTML;
+                    oList.style.display = 'none';
+                    iNow = target.index;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <div id="top"></div>
+        <ul id="list">
+            <li>宋体</li>
+            <li>黑体</li>
+            <li>楷体</li>
+            <li>微软雅黑</li>
+            <li>新宋体</li>
+            <li>仿宋</li>
+        </ul>
+    </div>
+    <script src='../comm/comm.js'></script>
+</body>
+</html>

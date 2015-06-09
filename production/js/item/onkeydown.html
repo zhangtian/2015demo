@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;}
+        div{width:100px;height:100px;background-color: red;position: absolute;left: 0;top: 0;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oDiv = document.getElementsByTagName('div')[0];
+            var keyCode = 0;
+            document.onkeydown = function(ev){
+                var e = ev || event;
+                keyCode = e.keyCode;
+            };
+            
+            document.onkeyup = function(){
+                keyCode = 0;
+            };
+            setInterval(function(){
+                switch(keyCode){
+                    case 37:
+                        oDiv.style.left = oDiv.offsetLeft - 5 + "px";
+                    break;
+                    case 38:
+                        oDiv.style.top = oDiv.offsetTop - 5 + "px";
+                    break;
+                    case 39:
+                        oDiv.style.left = oDiv.offsetLeft + 5 + "px";
+                    break;
+                    case 40:
+                        oDiv.style.top = oDiv.offsetTop + 5 + "px";
+                    break;
+                }
+            },30)
+        };
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

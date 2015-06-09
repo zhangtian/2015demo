@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{width:700px;height:500px;margin:30px auto;border:1px solid #000;position: relative;}
+        #left{width:680px;height:500px;position: absolute;left: 0;top: 0;background-color: #ecfcd5;overflow: hidden;}
+        #right{width:20px;height:500px;position: absolute;right: 0;top: 0;background-color: #b2d1eb;}
+        #scroll{width:20px;height:50px;position: absolute;top:0;left: 0;background-color: #4665ac;}
+        #text{position: absolute;left: 0;top: 0;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oBox = document.getElementById('box');
+            var oLeft = document.getElementById('left');
+            var oRight = document.getElementById('right');
+            var oScroll = document.getElementById('scroll');
+            var oText = document.getElementById('text');
+            
+            //滚动条的高度 = 限制范围的高度除以内容的高度乘以 限制滚动条的高度
+            oScroll.style.height = (oLeft.clientHeight/oText.offsetHeight)* oRight.offsetHeight + 'px';
+                
+            oScroll.onmousedown = function(ev){
+                var e = ev || event;
+                var t = e.clientY - oScroll.offsetTop;
+                
+                document.onmousemove = function(ev){
+                    var e = ev || event;
+                    var iT = e.clientY - t;
+                    if(iT <= 0) iT = 0;
+                    if(iT >= (oRight.clientHeight - oScroll.offsetHeight)) iT = oRight.clientHeight - oScroll.offsetHeight;
+                    
+                    oScroll.style.top = iT + 'px';
+                    //oText的top
+                    oText.style.top = -oScroll.offsetTop/(oRight.clientHeight - oScroll.offsetHeight)*(oText.offsetHeight-oLeft.clientHeight) + 'px';//内容的top等于滚动条滚动的距离除以滚动的最大高度 乘以 内容的高度减去限制范围的高度 
+                    
+                };
+                document.onmouseup = function(){
+                    document.onmousemove = document.onmouseup = null;
+                };
+                return false;//阻止默认行为
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div id="left">
+            <div id="text">
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+                aaaaaaaaaaaaaaaaaaaaaaaaa<br/>
+            </div>
+        </div>
+        <div id="right">
+            <div id="scroll"></div>
+        </div>
+    </div>
+</body>
+</html>

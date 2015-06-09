@@ -1,0 +1,267 @@
+@charset "utf-8";
+.searchLogo{width:141px;height:58px;background: url(../images/icon/taobaolg.png) left top no-repeat;}
+.searchLogo a{width:100%;height:100%;display: inline-block;text-indent: -99em;}
+.Search_box{margin-left: 250px;margin-right: 220px;}
+.search_inputs_box{height:45px;}
+.search_inputs{padding-right: 40px;_padding-right:37px;margin-bottom: -65px;}
+.search_inputs_ss{height:45px;background-color: #FF4400;}
+.gjSearch{font:12px/19px "";width:2em;padding-top: 3px;color: #6C6C6C;}
+.search_input_tit{position: relative;margin:3px 0;border-right:1px solid #E5E5E5;}
+.search_input_tit h3{width:73px;font:12px/39px "微软雅黑";text-indent: 21px;color:#6C6C6C;margin-left: 3px;background-color: #F5F5F5;}
+.xl{width:5px;height:3px;overflow: hidden;position: absolute;right:9px;top:18px;background-position: 0 -67px;}
+.search_ss{width:100px;height:45px;color: #fff;font:18px/45px "微软雅黑";}
+.search_inputBox{margin-right: 100px;padding-top: 3px;}
+.search_input_box{padding-left: 77PX;}
+.search_input{padding:0 10px;background-color: #fff;height:39px;}
+.search_input input{font-size: 12px;line-height: 39px\9;float: left;display: inline;height:39px;margin-bottom: -39px;position: relative;width:100%;}
+.search_input label{display: block;font:12px/39px "";height: 39px;width:100%;}
+.ss_icon{background-position: -160px 0;width:12px;height:11px;overflow: hidden;float: left;margin-top: 15px;margin-right: 6px;}
+.search_bottom{}
+.search_bottom li{float: left;margin-right: 7px;height:20px;padding-top: 4px;}
+.search_bottom a{color: #6C6C6C;font:12px/18px "";padding-top: 2px;height:18px;display: inline-block;}
+.search_bottom .more{width:41px;text-indent: 5px; background-position: -196px 0;margin-left: 16px;}
+.search_bottom .more:hover{background-position: -196px -21px;color: #fff;}
+.searchTit_box{height:45px;margin-bottom: -45px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*icon*/
+.xl,.ss_icon,.more{background-image: url(../images/icon/icon.png);background-repeat: no-repeat;}
+
+
+/*公共样式*/
+body{min-width: 1300px;}
+.gWidth{width:1190px;margin:30px auto;}
+.show{display: block;}
+.hiden{display: none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

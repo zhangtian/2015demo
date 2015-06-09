@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{width:200px;height:200px;background-color: red;position: absolute;left: 0;top: 0;}
+        
+    </style>
+    <script>
+        window.onload = function(){
+            var oBody = document.body;
+            var aDiv = document.getElementsByTagName('div');
+            
+            aDiv[0].onmousedown = function(ev){
+                
+                var e = ev || event;
+                var oDiv = document.createElement('div');
+                
+                var l = 0;
+                var t = 0;
+                oDiv.style.opacity = '0.5';
+                //解决了每次点击创建的元素都在左上角的问题 让创建的元素每次都是根据原来的div的位置创建
+                oDiv.style.left = aDiv[0].style.left;
+                oDiv.style.top = aDiv[0].style.top;
+                oBody.appendChild(oDiv);
+                
+                document.onmousemove = function(ev){
+                    var e = ev || event;
+                    
+                    l = e.clientX;
+                    t = e.clientY;
+                    
+                    oDiv.style.left = l + 'px';
+                    oDiv.style.top = t + 'px';
+                    //解决了点击多次的时候会有无法放下div的问题 
+                    oDiv.setCapture && oDiv.setCapture();
+                    return false;
+                };
+                document.onmouseup = function(){
+                    document.onmousemove = null;    
+                    document.onmouseup = null;
+                    
+                    oBody.removeChild(oDiv);
+                    
+                    aDiv[0].style.left = l + 'px';
+                    aDiv[0].style.top = t + 'px';
+                    
+                    oDiv.releaseCapture && oDiv.releaseCapture();
+                    
+                };
+            }
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

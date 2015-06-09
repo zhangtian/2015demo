@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #div1{width:200px;height:200px;position: absolute;left: 0;top:0; background-color: red;}
+        #div2{width:200px;height:200px;position: absolute;left:600px;top:200px;background-color: green;}
+    </style>
+    <script>
+        window.onload =function(){
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            
+            var oDiv2L = oDiv2.offsetLeft;//oDiv2距左边的距离
+            var oDiv2L2 = oDiv2.offsetLeft + oDiv2.offsetWidth;//oDiv2距左边的距离 加上 自身的宽度
+            var oDiv2T = oDiv2.offsetTop;//oDiv2距上边的距离
+            var oDiv2T2 = oDiv2.offsetTop + oDiv2.offsetHeight;//oDiv2距上边的距离 加上 自身的高度
+            
+            oDiv1.onmousedown = function(ev){
+                var e = ev || event;
+                
+                var disl = e.clientX - oDiv1.offsetLeft;
+                var dist = e.clientY - oDiv1.offsetTop;
+                
+                document.onmousemove = function(ev){
+                    var e = ev || event;
+                    var L = e.clientX - disl ;//div1 距左边的距离
+                    var T = e.clientY - dist;//div1 距上边的距离
+                    
+                    var l = oDiv1.offsetLeft + oDiv1.offsetWidth;//div1距左边的距离加上自身的宽度
+                    var t = oDiv1.offsetTop + oDiv1.offsetWidth;//div1 距离上边的高度加上自身的高度
+                    
+                    
+                    if( l < oDiv2L || L > oDiv2L2 || t < oDiv2T || T > oDiv2T2 ){
+                        //div1距左边的距离加上自身的宽度 小于 oDiv2距左边的距离 
+                        //div1 距左边的距离 大于 oDiv2距左边的距离 加上 自身的宽度
+                        //div1 距离上边的高度加上自身的高度 小于 oDiv2距上边的距离
+                        //div1 距上边的距离 大于 oDiv2距上边的距离 加上 自身的高度
+                        oDiv2.style.backgroundColor = 'green';
+                    }else{
+                        oDiv2.style.backgroundColor = 'blue';
+                    }
+                    
+                    oDiv1.style.left = L + 'px';
+                    oDiv1.style.top = T + 'px';
+                    
+                };
+                
+                document.onmouseup = function(){
+                    document.onmousemove = document.onmouseup = null;
+                }
+                
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>
